@@ -42,6 +42,6 @@ app.use(blogRoutes);
 
 
 
-app.listen(3000 || process.env.PORT, function(){
+app.listen(process.env.PORT, function(){
     console.log("Has started!");
 });
