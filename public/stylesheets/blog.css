@@ -1,0 +1,191 @@
+body{
+    padding-top: 70px;
+    background-color: #f2f2f2;
+    font-family: 'Josefin Slab', serif;
+}
+
+img{
+    display: block;
+    margin: 20px auto;
+    width: 90%;
+    border-radius: 10px;
+}
+
+nav{
+
+    background-color: #2707f5;
+}
+
+i{
+    transition: 0.3s;
+    margin-right: 5px;
+}
+
+
+h1{
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+h3{
+    text-align: center;
+}
+
+a.navbar-brand {
+    width: 120px;
+    text-align: center;
+    color: white;
+}
+
+a.navbar-brand:hover {
+    color: black;
+}
+
+a.navbar-brand:hover i{
+    margin-right: 10px;
+   
+}
+
+a.nav-link{
+    font-size: 1rem;
+    width: 135px;
+    text-align: center;
+    color: white;
+}
+
+a.nav-link:hover{
+    color: black;
+}
+
+a.nav-link:hover i{
+    margin-right: 10px;
+}
+
+.card{
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.card.comments{
+    background-color: #f7f7f7;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top{
+    width: 75%;
+    margin: 20px auto;
+    
+}
+
+.nav-link.user{
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    line-height: 35px;
+}
+
+.nav-link.user:hover{
+    color: white;
+    cursor: default;
+}
+
+.alert-success{
+    background-color: #025dfa;
+    color: white;
+    border: none;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+    font-size: 1.3rem;
+}
+
+.alert-danger{
+    background-color: #025dfa;
+    color: white;
+    border: none;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+    font-size: 1.3rem;
+}
+
+.register{
+    width: 65%;
+    margin: 20px auto;
+}
+
+.container.main{
+    /* overflow: hidden; */
+}
+
+.btn.index{
+   background-color: #2707f5;
+   color: white;
+   position: absolute;
+   bottom: 5%;
+   width: 180px;
+   font-size: 1.2rem;
+}
+
+.btn.register{
+    background-color: #2707f5;
+    display: inline;
+    color: white;
+}
+
+.btn:focus{
+    box-shadow: none;
+}
+
+.center{
+    text-align: center;
+}
+
+.btn.register:hover{
+    color: black;
+}
+
+.btn.newcomment{
+    border-color: #2707f5;
+}
+
+.btn.newcomment:hover{
+    background-color: #2707f5;
+    color: white;
+}
+
+.btn.index:hover{
+    color: black;
+}
+
+.btn{
+    outline: none;
+}
+
+.btn.delete{
+    background-color: #6790db;
+    width: 140px;
+}
+
+.btn.delete:hover{
+    color: white;
+}
+
+.btn.edit{
+    background-color: #adcbff;
+}
+
+.btn.edit:hover{
+    color: white;
+}
+
+#delete{
+    width: 100%;
+}
+
+.card-text.index{
+    font-size: 1.5rem;
+}
+
+
+

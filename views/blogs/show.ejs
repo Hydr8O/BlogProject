@@ -1,0 +1,55 @@
+<% include ../partials/header %>
+    <div class="card mb-4 mt-4">  
+        <div class="card-body">
+            <h1 class="cart-title mb-4"><%= blog.title %></h1>
+            <img class="card-img-top" src="<%= blog.image %>" alt="">
+            <p class="card-text"><%= blog.content %></p>
+            <p><em>Submitted by <%= blog.author.username %></em></p>
+            <% if (currentUser && blog.author.id.equals(currentUser._id)){ %>
+                <a class="btn edit" href="/blogs/<%= blog._id %>/edit">Edit Post</a>
+                <form class = "delete float-right" action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
+                    <button class="btn delete">Delete</button>
+                </form>
+            <% } %>
+            
+        </div>
+    </div>
+    <div class="card mt-4 mb-4 comments">
+        <div class="card-body">
+            <div class="text-right">
+                <span class="float-left">Comments</span> <a class="btn newcomment text-right" href="/blogs/<%= blog._id %>/comments/new">Add new comment</a></button>
+            </div>
+            <hr>
+            <% if (blog.comments.length === 0) { %>
+                <div class="row text-center">
+                    <div class="col-12">
+                        <p>No Comments yet</p>
+                    </div>
+                </div>
+                
+            <% } else { %>          
+                <% blog.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <span class="float-right text-muted"><small><%= Math.floor((Date.now() - comment.created)/60000) %> mins ago</small></span>
+                            <p><%= comment.title %></p>
+                            <% if (currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="btn edit">Edit Comment</a>
+                                <form class="float-right delete" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                    <button class="btn delete">Delete</button>
+                                </form>
+                            <% } %>
+                            
+                        </div>
+                    </div>
+            <% }) %>
+            <% } %>
+            
+                
+            
+
+        </div>
+    </div>
+    <script src="/scripts/blog.js"></script>
+<% include ../partials/footer %>
