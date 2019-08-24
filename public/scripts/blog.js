@@ -11,3 +11,14 @@ if (document.querySelector(".login")){
     });
 }
 
+if (document.querySelector(".btn.delete")){
+    var deleteBtn = document.querySelectorAll(".btn.delete");
+    for (var i = 0; i < deleteBtn.length; i++){
+        deleteBtn[i].addEventListener("mouseenter", function(){
+            this.innerHTML = "<i class='fas fa-trash'></i>";
+        });
+        deleteBtn[i].addEventListener("mouseleave", function(){
+            this.innerHTML = "Delete";
+        });
+    }
+}

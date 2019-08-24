@@ -114,9 +114,6 @@ a.nav-link:hover i{
     margin: 20px auto;
 }
 
-.container.main{
-    /* overflow: hidden; */
-}
 
 .btn.index{
    background-color: #2707f5;
@@ -165,11 +162,9 @@ a.nav-link:hover i{
 .btn.delete{
     background-color: #6790db;
     width: 140px;
+    transition: 0.2s;
 }
 
-.btn.delete:hover{
-    color: white;
-}
 
 .btn.edit{
     background-color: #adcbff;
@@ -179,13 +174,9 @@ a.nav-link:hover i{
     color: white;
 }
 
-#delete{
-    width: 100%;
-}
+
 
 .card-text.index{
     font-size: 1.5rem;
 }
-
-
 
