@@ -13,7 +13,7 @@ img{
 
 nav{
 
-    background-color: #2707f5;
+    background-color: #6e02e8;
 }
 
 i{
@@ -63,7 +63,7 @@ a.nav-link:hover i{
 }
 
 .card{
-    width: 60%;
+    width: 70%;
     margin: auto;
     margin-top: 30px;
 }
@@ -116,7 +116,7 @@ a.nav-link:hover i{
 
 
 .btn.index{
-   background-color: #2707f5;
+   background-color: #6e02e8;
    color: white;
    position: absolute;
    bottom: 5%;
@@ -125,7 +125,7 @@ a.nav-link:hover i{
 }
 
 .btn.register{
-    background-color: #2707f5;
+    background-color: #6e02e8;
     display: inline;
     color: white;
 }
@@ -143,11 +143,11 @@ a.nav-link:hover i{
 }
 
 .btn.newcomment{
-    border-color: #2707f5;
+    border-color: #6e02e8;
 }
 
 .btn.newcomment:hover{
-    background-color: #2707f5;
+    background-color: #6e02e8;
     color: white;
 }
 
@@ -174,9 +174,59 @@ a.nav-link:hover i{
     color: white;
 }
 
+.navbar-toggler{
+    padding: 0;
+    width: 70px;
+    height: 70px;
+}
 
+.navbar-toggler:focus{
+    outline: none;
+}
+
+.navbar-toggler-icon{
+    font-size: 2rem;
+    color: white;
+    transition: font-size 0.2s;
+}
+
+i.fa-sort-up{
+    line-height: 1.5;
+}
+
+.navbar-toggler:hover i{
+    color: black;
+    font-size: 2.3rem;
+}
+
+.fa-sort-up{
+    line-height: 40px;
+}
+
+/* .fa-sort-up:hover{
+    color: black;
+    font-size: 2.3rem;
+} */
 
 .card-text.index{
     font-size: 1.5rem;
+}
+
+.cart-title{
+    font-weight: bold;
+}
+
+@media (max-width: 768px){
+    a.nav-link{
+        text-align: start;
+    }
+    
+    .card{
+        width: 90%;
+    }
+    
+    a.navbar-brand{
+        text-align: start;
+    }
 }
 

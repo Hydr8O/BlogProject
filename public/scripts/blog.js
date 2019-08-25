@@ -1,13 +1,14 @@
 
 if (document.querySelector(".login")){
+    var door = document.querySelector(".open");
     document.querySelector(".login").addEventListener("mouseover", function(){
-        document.querySelector(".open").classList.toggle("fa-door-closed");
-        document.querySelector(".open").classList.toggle("fa-door-open");
+        door.classList.toggle("fa-door-closed");
+        door.classList.toggle("fa-door-open");
     });
 
     document.querySelector(".login").addEventListener("mouseout", function(){
-        document.querySelector(".open").classList.toggle("fa-door-closed");
-        document.querySelector(".open").classList.toggle("fa-door-open");
+        door.classList.toggle("fa-door-closed");
+        door.classList.toggle("fa-door-open");
     });
 }
 
@@ -21,4 +22,17 @@ if (document.querySelector(".btn.delete")){
             this.innerHTML = "Delete";
         });
     }
+}
+
+if (document.querySelector(".arrow-down")){
+    var arrowDown = document.querySelector(".arrow-down");
+    document.querySelector(".navbar-toggler").addEventListener("click", function(){
+        arrowDown.classList.toggle("fa-sort-down");
+        arrowDown.classList.toggle("fa-sort-up");
+    });
+    
+    // arrowDown.addEventListener("mouseleave", function(){
+    //     arrowDown.classList.toggle("fa-sort-down");
+    //     arrowDown.classList.toggle("fa-sort-up");
+    // });
 }
