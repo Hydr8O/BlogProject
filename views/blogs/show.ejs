@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <strong><%= comment.author.username %></strong>
-                            <span class="float-right text-muted"><small><%= Math.floor((Date.now() - comment.created)/60000) %> mins ago</small></span>
+                            <span class="float-right text-muted"><small><%= moment(comment.created).fromNow() %></small></span>
                             <p><%= comment.title %></p>
                             <% if (currentUser && comment.author.id.equals(currentUser._id)){ %>
                                 <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="btn edit">Edit Comment</a>

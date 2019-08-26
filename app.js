@@ -11,6 +11,7 @@ var express = require("express"),
     blogRoutes = require("./routes/blogs"),
     indexRoutes = require("./routes/index"),
     flash = require("connect-flash");
+    
 
 app.set("view engine", "ejs");
 mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/my_blog", {useNewUrlParser: true});
@@ -22,6 +23,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.locals.moment = require("moment");
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -39,7 +41,6 @@ passport.deserializeUser(User.deserializeUser());
 app.use(indexRoutes);
 app.use(commentRoutes);
 app.use(blogRoutes);
-
 
 
 app.listen(process.env.PORT || 3000, function(){

@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var Blog = require("../models/blog")
 var middleware = require("../middleware");
-
+var Comment = require("../models/comment");
 
 
 //Index Route
@@ -78,12 +78,14 @@ router.put("/blogs/:id", middleware.checkBlogOwnership, function(req, res){
 
 //Delete Route
 router.delete("/blogs/:id", middleware.checkBlogOwnership, function(req, res){
-    Blog.findByIdAndRemove(req.params.id, function(err){
+    Blog.findByIdAndRemove(req.params.id, function(err, removedBlog){
         if (err){
             res.redirect("/blogs/:id");
         } else {
-            req.flash("success", "Your post has been deleted successfuly!");
-            res.redirect("/blogs");
+            Comment.deleteMany({_id: {$in: removedBlog.comments}}, function(err){
+                req.flash("success", "Your post has been deleted successfuly!");
+                res.redirect("/blogs");
+            });     
         }
     });
 });

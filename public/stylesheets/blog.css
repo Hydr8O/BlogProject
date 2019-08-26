@@ -47,6 +47,10 @@ a.navbar-brand:hover i{
    
 }
 
+li.user{
+    list-style: none;
+}
+
 a.nav-link{
     font-size: 1rem;
     width: 135px;
@@ -62,8 +66,13 @@ a.nav-link:hover i{
     margin-right: 10px;
 }
 
+a.nav-link.user{
+    line-height: 1.7;
+    text-transform: uppercase;
+}
+
 .card{
-    width: 70%;
+    width: 85%;
     margin: auto;
     margin-top: 30px;
 }
@@ -83,8 +92,10 @@ a.nav-link:hover i{
     border: 1px solid white;
     border-radius: 50%;
     width: 50px;
+    
     height: 50px;
     font-size: 1.5rem;
+    text-align: center;
     line-height: 35px;
 }
 
@@ -119,7 +130,7 @@ a.nav-link:hover i{
    background-color: #6e02e8;
    color: white;
    position: absolute;
-   bottom: 5%;
+   bottom: 20px;
    width: 180px;
    font-size: 1.2rem;
 }
@@ -203,23 +214,39 @@ i.fa-sort-up{
     line-height: 40px;
 }
 
-/* .fa-sort-up:hover{
-    color: black;
-    font-size: 2.3rem;
-} */
-
 .card-text.index{
     font-size: 1.5rem;
+    padding-bottom: 70px;
 }
 
 .cart-title{
     font-weight: bold;
 }
 
+.card-text.date{
+    position: absolute;
+    bottom: 55px;
+}
+
+
 @media (max-width: 768px){
     a.nav-link{
         text-align: start;
     }
+
+    .navbar-toggler:hover i{
+        color: white;
+    }
+
+    body{
+        padding-top: 90px;
+    }
+
+    /* a.nav-link.user{
+        position: absolute;
+        top: 10%;
+        text-align: center;
+    } */
     
     .card{
         width: 90%;
@@ -227,6 +254,26 @@ i.fa-sort-up{
     
     a.navbar-brand{
         text-align: start;
+    }
+
+    a.nav-link.user{
+        line-height: 1.7;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-item.user{
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+@media (min-width: 992px){
+    img{
+        width: 95%;
+        margin-top: 30px;
+        margin-left: 20px;
     }
 }
 

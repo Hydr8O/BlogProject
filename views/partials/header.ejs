@@ -14,7 +14,12 @@
       <nav class = "navbar navbar-expand-md fixed-top">
           <div class="container-fluid">
               <div class="navbar-header">
-                  <a class="navbar-brand ml-3" href="/"><i class="fas fa-laptop-code"></i>Blogs</a>
+                  <a class="navbar-brand ml-3" href="/"><i class="fas fa-laptop-code"></i>Blogs</a> 
+                  <% if (currentUser){ %>
+                    <li class="nav-item float-right user">
+                        <a class="nav-link user p-0" href=""><%= currentUser.username.substring(0, 1) %></a>
+                    </li>
+                  <% } %>        
               </div>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainnav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class=navbar-toggler-icon><i class="fas fa-sort-down arrow-down"></i></span>
@@ -38,14 +43,12 @@
                         </li>
                     <% } else { %>
                         <li class="nav-item">
-                            <a href="#" class="nav-link user"><%= currentUser.username.substring(0, 1) %></a>
-                        </li>
-                        <li class="nav-item">
                             <a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i>Logout</a>
                         </li>
                     <% } %>                
                 </ul>
               </div>
+              
           </div>
       </nav>
 
