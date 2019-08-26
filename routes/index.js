@@ -54,6 +54,8 @@ router.post("/register", function(req, res){
                                 smtpTransport.sendMail(mailOptions, function(err){
                                     if (err){
                                         console.log(err);
+                                        req.flash("error", "Something wrong has happened!\nPlease contact the administration to solve this problem");
+                                        res.redirect("/blogs");
                                     } else {
                                         res.render("register/confirmMessage");
                                         console.log("sent");
