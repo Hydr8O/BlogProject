@@ -52,8 +52,13 @@ router.post("/register", function(req, res){
                                     subject: "Email confirmation"
                                 }
                                 smtpTransport.sendMail(mailOptions, function(err){
-                                    res.render("register/confirmMessage");
-                                    console.log("sent");
+                                    if (err){
+                                        console.log(err);
+                                    } else {
+                                        res.render("register/confirmMessage");
+                                        console.log("sent");
+                                    }
+                                    
                                 });  
                             };
                         });
