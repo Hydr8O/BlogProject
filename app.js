@@ -14,7 +14,7 @@ var express = require("express"),
     
 
 app.set("view engine", "ejs");
-mongoose.connect("mongodb://localhost/my_blog" || process.env.DATABASEURL , {useNewUrlParser: true});
+mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/my_blog", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
