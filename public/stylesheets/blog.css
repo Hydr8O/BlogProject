@@ -207,7 +207,7 @@ i.fa-sort-up{
 
 .navbar-toggler:hover i{
     color: black;
-    font-size: 2.3rem;
+    transform: scale(1.5);
 }
 
 .fa-sort-up{
@@ -231,11 +231,24 @@ i.fa-sort-up{
 
 @media (max-width: 768px){
     a.nav-link{
-        text-align: start;
+        text-align: center;
+        margin: auto;
     }
 
     .navbar-toggler:hover i{
         color: white;
+    }
+
+    
+
+    li.user {
+        margin: auto;
+    }
+
+    ul.user{
+        border-top: 1px solid #e6e9ed;
+        padding-top: 40px;
+        margin-top: 20px;
     }
 
     body{

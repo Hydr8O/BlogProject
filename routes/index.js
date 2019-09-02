@@ -19,75 +19,77 @@ router.get("/register", function(req, res){
     res.render("register/register");
 });
 
-router.post("/register", function(req, res){
-    User.findOne({username: req.body.username}, function(err, user){
-        if (user){
-            req.flash("error", "User with this usernamer already exists");
-            return res.redirect("/register");
-        } else {
-            User.findOne({email: req.body.email}, function(err, user){
-                if (user){
-                    req.flash("error", "User with this email already exists");
-                    return res.redirect("/register");
+
+router.post("/register", async (req, res) => {
+    try{
+        await User.findOne({username: req.body.username}).then(user => {
+            if (user){
+                throw "User with this username already exists";
+            }
+        });
+        await User.findOne({email: req.body.email}).then(user => {
+            if (user){
+                throw "User with this email already exists";
+            }
+        });
+        const token = await new Promise((resolve, reject) => {
+            crypto.randomBytes(20, (err, buf) => {
+                if (!buf){
+                    reject ("Something wrong with crypto");
                 } else {
-                    crypto.randomBytes(20, function(err, buf){
-                        var token = buf.toString('hex');
-                        var newUser = new User({username: req.body.username, email: req.body.email, registerToken: token, registerTokenExpires: Date.now() + 1000 * 60 * 60 * 2});
-                        User.register(newUser, req.body.password, function(err, user){
-                            if (err){
-                                req.flash("error", err.message + "!");
-                                return res.redirect("/register");
-                            } else {
-                                var smtpTransport = nodemailer.createTransport({
-                                    service: "Gmail",
-                                    auth: {
-                                        user: process.env.SENDER,
-                                        pass: process.env.SENDERPASS
-                                    }
-                                });
-                                var mailOptions = {
-                                    to: user.email,
-                                    from: "blogsposts@gmail.com",
-                                    text: "Thank you for deciding to take a part in this project!\nTo confirm your email address please click on the following link http://" + req.headers.host + "/emailConfirm/" + token,
-                                    subject: "Email confirmation"
-                                }
-                                smtpTransport.sendMail(mailOptions, function(err){
-                                    if (err){
-                                        console.log(err);
-                                        req.flash("error", "Something wrong has happened!\nPlease contact the administration to solve this problem");
-                                        res.redirect("/blogs");
-                                    } else {
-                                        res.render("register/confirmMessage");
-                                        console.log("sent");
-                                    }
-                                    
-                                });  
-                            };
-                        });
-                    }); 
-                }
+                    resolve (buf.toString("hex"));
+                } 
             });
+        }).then(token => token).catch(err => {throw err});
+        const newUser = ({username: req.body.username, email: req.body.email, registerToken: token, registerTokenExpires: Date.now() + 1000 * 60 * 60 * 2});
+        const registeredUser = await User.register(newUser, req.body.password).catch(err => {throw err});
+        const smtpTransport = nodemailer.createTransport({
+            service: "Gmail",
+            auth: {
+                user: process.env.SENDER,
+                pass: process.env.SENDERPASS
+            }  
+        });
+        const mailOptions = {
+            to: registeredUser.email,
+            from: "",
+            text: "Thank you for deciding to take a part in this project!\nTo confirm your email address please click on the following link http://" + req.headers.host + "/emailConfirm/" + token,     
+            subject: "Email confirmation"
         }
-    });  
+        await smtpTransport.sendMail(mailOptions).catch(err => {throw err});
+        res.render("register/confirmMessage");
+    } catch(err){
+        req.flash("error", err);
+        console.log(err);
+        res.redirect("/register");
+    }
 });
 
+
 //Confirm Route
-router.get("/emailConfirm/:token", function(req, res){
-    User.findOne({registerToken: req.params.token}, function(err, user){
-        if (!user){
-            req.flash("error", "It seems that you have already confirmed your email");
-            return res.redirect("/blogs");
-        }
+
+router.get("/emailConfirm/:token", async (req, res) =>{
+    try{
+        let user = await User.findOne({registerToken: req.params.token}).then(user =>{
+            if (!user){
+                throw "err";
+            } else {
+                return user;
+            }
+        });
         user.isConfirmed = true;
         user.registerToken = undefined;
         user.registerTokenExpires = undefined;
-        user.save(function(err){
-            req.flash("success", "Hello, " + user.username + "!\nYour email has been confirmed successfuly!");
-            res.redirect("/blogs");
-        });
-    });
-});
+        await user.save();
+        req.flash("success", "Hello, " + user.username + "!\nYour email has been confirmed successfuly!");
+        res.redirect("/blogs");
+    } catch (err){
+        req.flash("error", err);
+        res.redirect("/blogs");
+    }
+    
 
+});
 
 //Login Route
 router.get("/login", function(req, res){
